@@ -16,9 +16,11 @@ sudo chmod 700 /var/log/vuls
 
 sudo mkdir -p /usr/local/go/src/github.com/cve-dict
 cd /usr/local/go/src/github.com/cve-dict
+sudo chmod 777 /usr/local/go/src/github.com/cve-dict
 git clone https://github.com/kotakanbe/go-cve-dictionary.git
 cd go-cve-dictionary
 make install
+
 #download cve-dict.
 sudo mkdir /opt/vuls
 cd /opt/vuls
@@ -26,6 +28,7 @@ sudo chown -R yuma /opt/vuls
 chmod 777 /opt/vuls
 for i in {2002..2016}; do go-cve-dictionary fetchnvd -years $i; done
 ls -alh cve.sqlite3
+
 sudo mkdir -p $GOPATH/src/github.com/future-architect
 cd $GOPATH/src/github.com/future-architect
 git clone https://github.com/future-architect/vuls.git
