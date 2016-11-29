@@ -3,12 +3,12 @@
 ###############################
 sudo apt update
 sudo apt install git gcc sudo sqlite3 make apache2 -y
+#install golang
 wget https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.7.3.linux-amd64.tar.gz
-
-sudo echo "export GOROOT=/usr/local/go/" >>/home/yuma/.bashrc
-sudo echo "export GOPATH=$HOME/go" >> /home/yuma/.bashrc
-sudo echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" >> /home/yuma/.bashrc
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 #install vuls
 sudo mkdir /var/log/vuls
 sudo chown -R yuma  /var/log/vuls
