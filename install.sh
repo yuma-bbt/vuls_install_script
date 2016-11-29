@@ -34,7 +34,9 @@ go get -u github.com/future-architect/vuls
 
 cd /var/www/html
 sudo git clone https://github.com/usiusi360/vulsrepo.git
-echo "User yuma" >> /etc/apache2/apache2.conf
-echo "Group yuma" >> /etc/apache2/apache2.conf
+sudo sed -i 's/User root/User yuma/g' /etc/apache2/apache2.conf
+sudo sed -i 's/Group root/Group yuma/g' /etc/apache2/apache2.conf
+#awk '{gsub("User root","User yuma",$0);print $0}' /etc/apache2/apache2.conf
+#awk '{gsub("Group root","Group yuma",$0);print $0}' /etc/apache2/apache2.conf
 #awk
 sudo service apache2 restart
