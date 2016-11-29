@@ -9,14 +9,17 @@ sudo tar -C /usr/local -xzf go1.7.3.linux-amd64.tar.gz
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+echo "export GOROOT=/usr/local/go">>~/.bashrc
+echo "export GOPATH=$HOME/go">>~/.bashrc
+echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin">>~/.bashrc
+source ~/.bashrc
 #install vuls
 sudo mkdir /var/log/vuls
-sudo chown -R yuma  /var/log/vuls
-sudo chmod 700 /var/log/vuls
-
-sudo mkdir -p /usr/local/go/src/github.com/cve-dict
-cd /usr/local/go/src/github.com/cve-dict
-sudo chmod 777 /usr/local/go/src/github.com/cve-dict
+sudo chown yuma  /var/log/vuls
+sudo chmod 777 /var/log/vuls
+mkdir -p $GOPATH/src/github.com/kotakanbe
+cd $GOPATH/src/github.com/kotakanbe
 git clone https://github.com/kotakanbe/go-cve-dictionary.git
 cd go-cve-dictionary
 make install
@@ -25,22 +28,23 @@ make install
 sudo mkdir /opt/vuls
 cd /opt/vuls
 sudo chown -R yuma /opt/vuls
-chmod 777 /opt/vuls
+sudo chmod 777 /opt/vuls
 for i in {2002..2016}; do go-cve-dictionary fetchnvd -years $i; done
 ls -alh cve.sqlite3
 
-sudo mkdir -p $GOPATH/src/github.com/future-architect
-cd $GOPATH/src/github.com/future-architect
+#vuls
+sudo mkdir -p ~/go/src/github.com/future-architect
+cd ~/go/src/github.com/future-architect
+sudo chmod 777 ~/go/src/github.com/future-architect
+sudo chown yuma ~/go/src/github.com/future-architect
 git clone https://github.com/future-architect/vuls.git
-cd vuls
+cd ~/go/src/github.com/future-architect/vuls
 make install
-go get -u github.com/future-architect/vuls
 
 cd /var/www/html
 sudo git clone https://github.com/usiusi360/vulsrepo.git
 sudo sed -i 's/User root/User yuma/g' /etc/apache2/apache2.conf
 sudo sed -i 's/Group root/Group yuma/g' /etc/apache2/apache2.conf
-#awk '{gsub("User root","User yuma",$0);print $0}' /etc/apache2/apache2.conf
-#awk '{gsub("Group root","Group yuma",$0);print $0}' /etc/apache2/apache2.conf
 #awk
 sudo service apache2 restart
+~
