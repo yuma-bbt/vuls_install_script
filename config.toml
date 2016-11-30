@@ -1,0 +1,22 @@
+[slack]
+hookURL      = "https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+channel      = "vuls"
+iconEmoji    = ":ghost:"
+authUser     = "foo"
+notifyUsers  = ["@foo"]
+
+[default]
+port        = "22"
+user        = "bar"
+keyPath     = "/home/bar/.ssh/id_rsa"
+
+
+
+[servers]
+
+[server-name1]
+host         = "192.168.xx.yy"
+
+[server-name2]
+host         = "192.168.xx.yy"
+
